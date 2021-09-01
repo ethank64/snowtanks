@@ -52,13 +52,13 @@ function draw() {
   player1.update(83, 68, 65, 87, player2.x - 27, createVector(player2.x, player2.y[floor(player2.x)]));
   player1.show();
   
-  player2.update(UP_ARROW, RIGHT_ARROW, LEFT_ARROW, DOWN_ARROW, player1.x + 27, createVector(player1.x, player1.y[floor(player1.x)]));
+  player2.update(73, 76, 74, 75, player1.x + 27, createVector(player1.x, player1.y[floor(player1.x)]));
   player2.show();
 }
 
 function keyPressed() {
   player1.shoot(69);
-  player2.shoot(191);
+  player2.shoot(85);
 }
 
 function reset() {
