@@ -1,14 +1,19 @@
 class Bullet {
-  constructor(x, y, r, speed) {
+  constructor(x, y, angle, speed, power) {
     this.pos = createVector(x, y);
-    this.r = r;
+    this.angle = angle;
     this.rad = 15;
     this.speed = speed;
+    this.power = power;
     
-    if (this.r >= 0) {
-      this.vel = createVector(map(this.r, -180, 180, -this.speed, this.speed, true) * 2, ((map(this.r, -180, 180, -this.speed, this.speed, true) * -2) + this.speed) * -1);
-    } else {
-      this.vel = createVector(map(this.r, -180, 180, -this.speed, this.speed, true) * 2, ((map(this.r, -180, 180, -this.speed, this.speed, true) * 2) + this.speed) * -1);
+    if (this.angle >= 0 && this.angle <= 90) {
+      this.vel = createVector(map(this.angle, -90, 90, -this.speed, this.speed, true) * this.power, (map(this.angle, -90, 90, -this.speed, this.speed, true) * -1 + this.speed) * -this.power);
+    } else if (this.angle < 0 && this.angle >= -90) {
+      this.vel = createVector(map(this.angle, -90, 90, -this.speed, this.speed, true) * this.power, (map(this.angle, -90, 90, -this.speed, this.speed, true) + this.speed) * -this.power);
+    } else if (this.angle > 90) {
+      this.vel = createVector((this.speed - (map(this.angle, -90, 90, -this.speed, this.speed)) + this.speed) * this.power, ((map(this.angle, -90, 90, -this.speed, this.speed) * -1) + this.speed) * -this.power);
+    } else if (this.angle < -90) {
+      this.vel = createVector((this.speed + (map(this.angle, -90, 90, -this.speed, this.speed)) + this.speed) * -this.power, ((map(this.angle, -90, 90, -this.speed, this.speed) * -1) - this.speed) * this.power);
     }
     
     this.acc = createVector(0, 0);
