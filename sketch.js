@@ -21,6 +21,8 @@ function setup() {
   
   gravity = createVector(0, 0.03);
   
+  makeSnowHills();
+  
   player1P = select("#player1Score");
   player2P = select("#player2Score");
   
@@ -47,7 +49,7 @@ function draw() {
     flakes[i].show();
   }
   
-  drawSnowhills();
+  drawSnowHills();
   
   player1.update(83, 68, 65, 87, 67, 88, player2.x - 27, createVector(player2.x, player2.y[floor(player2.x)]));
   player1.show();
@@ -69,12 +71,18 @@ function reset() {
   player2.bullets = [];
 }
 
-function drawSnowhills() {
-  let xoff = 0;
-  
+function drawSnowHills() {
   noFill();
   stroke(255);
   strokeWeight(2);
+  
+  for (let x = 0; x < width; x++) {
+    line(x, yLocations[x] + 35, x, height);
+  }
+}
+
+function makeSnowHills() {
+  let xoff = 0;
   
   for (let x = 0; x < width; x++) {
     let y = map(noise(xoff), -0.5, 1, 0, height);
@@ -83,7 +91,6 @@ function drawSnowhills() {
       yLocations[x] = Math.floor(y) - 35;
     }
     
-    line(x, y, x, height);
     xoff += inc;
   }
 }
