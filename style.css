@@ -8,11 +8,19 @@ canvas {
   display: block;
 }
 
-.score {
+p {
   color: rgb(255, 255, 255);
+}
+
+.score p {
   display: inline-block;
 }
 
-#player2Score.score {
+#player2Score {
   float: right;
+}
+
+.controls {
+  font-style: italic;
+  text-align: center;
 }
