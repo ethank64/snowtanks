@@ -14,9 +14,9 @@ class Tank {
   }
 
   update(up, right, left, down, inc, dec, otherPlayerX, otherPlayerHurtbox) {
-    this.r = ((this.y[floor(this.x) - 4]) - (this.y[floor(this.x) + 4])) * -1;
-    this.vel = 1 - map(abs(this.r), 0, 50, 0, 1);
-    this.otherPlayerHurtbox.set(otherPlayerHurtbox);
+    this.r = ((this.y[floor(this.x) - floor(25 / 2.5)]) - (this.y[floor(this.x) + floor(25 / 2.5)])) * -1;
+    
+    this.vel = 1 - map(abs(this.r), 0, 90, 0, 1);
 
     if (keyIsDown(down) && this.shotAngle > -90) {
       this.shotAngle--;
@@ -35,7 +35,6 @@ class Tank {
       console.log(this.power);
     } else if (keyIsDown(dec) && this.power > 0.25) {
       this.power -= 0.01;
-      console.log(this.power);
     }
     
     for (let i = 0; i < this.bullets.length; i++) {
